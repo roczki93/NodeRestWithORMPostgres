@@ -3,7 +3,7 @@ const router = express.Router();
 const pg = require('pg');
 const path = require('path');
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('postgres://myuser:mypass@192.168.177.183:5432/mydatabase1');
+var sequelize = new Sequelize('postgres://myuser:mypass@192.168.177.183:5432/mydatabase1',{logging: false});
 
 var UserInformation = sequelize.define('user_information', {
   firstName: {
