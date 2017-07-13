@@ -63,7 +63,7 @@ router.get('/api/v1/userinfo/:findParam', (req, res, next) => {
     return UserInformation
       .find({ 
         where: {
-          firstName: req.params.findParam 
+          id: req.params.findParam 
         }
       })
       .then(UserInformation => res.status(200).send(UserInformation));
