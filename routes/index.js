@@ -107,6 +107,18 @@ router.put('/api/v1/userinfo/:userInfoId', (req, res, next) => {
    })
 });
 //end edit user
+//delete user info
+router.delete('/api/v1/userinfo/:userInfoId', (req, res, next) => {
+  return UserInformation
+    .destroy({
+      where: {
+        id: req.params.userInfoId
+      }
+    })
+    .then(UserInformation => res.status(200).send("OK"));
+});
+//end delete user info
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   UserInformation.findOne().then(function (userInfo) {
