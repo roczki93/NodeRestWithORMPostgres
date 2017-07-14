@@ -84,24 +84,29 @@ router.post('/api/v1/userinfo', (req, res, next) => {
   .then(UserInformation => res.status(200).send(UserInformation));
 });
 //end!
-router.put('/api/v1/userinfo/:user_info_id', (req, res, next) => {
-  return UserInformation.find({
-    where: {
-      'id': req.params.user_info_id
+//edit user info
+router.put('/api/v1/userinfo/:userInfoId', (req, res, next) => {
+  return UserInformation
+    .find({
+      where: {
+        'id': req.params.userInfoId
+      }
     })
-    .then(UserInformation.updateAttributes({
-      first_name: req.body.first_name, 
-      last_name: req.body.last_name, 
-      email: req.body.email, 
-      gender: req.body.gender, 
-      city: req.body.city, 
-      street: req.body.street, 
-      latitude: req.body.latitude, 
-      longitude: req.body.longitude,
+    .then(function(UserInformation){UserInformation
+      .updateAttributes({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        gender: req.body.gender,
+        city: req.body.city,
+        street: req.body.street,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
      })
      .then(UserInformation => res.status(200).send(UserInformation));
-    })
+   })
 });
+//end edit user
 /* GET home page. */
 router.get('/', function(req, res, next) {
   UserInformation.findOne().then(function (userInfo) {
