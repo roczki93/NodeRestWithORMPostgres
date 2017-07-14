@@ -6,13 +6,13 @@ var Sequelize = require('sequelize');
 var sequelize = new Sequelize('postgres://myuser:mypass@192.168.177.183:5432/mydatabase1',{logging: false});
 
 var UserInformation = sequelize.define('user_information', {
-  firstName: {
+  first_name: {
     type: Sequelize.STRING,
-    field: 'first_name' // Will result in an attribute that is firstName when user facing but first_name in the database
+   // field: 'first_name' // Will result in an attribute that is firstName when user facing but first_name in the database
   },
-  lastName: {
+  last_name: {
     type: Sequelize.STRING,
-    field: 'last_name'
+ //   field: 'last_name'
   },
   email: {
     type: Sequelize.STRING
@@ -71,10 +71,7 @@ router.get('/api/v1/userinfo/:findParam', (req, res, next) => {
 //end get user info
 //add user info
 router.post('/api/v1/userinfo', (req, res, next) => {
-  // Grab data from http request
-  const data = ;
-  return UserInformation.create(
-  {
+  return UserInformation.create({
     first_name: req.body.first_name, 
     last_name: req.body.last_name, 
     email: req.body.email, 
@@ -84,7 +81,7 @@ router.post('/api/v1/userinfo', (req, res, next) => {
     latitude: req.body.latitude, 
     longitude: req.body.longitude,
   })
-    .then(function(UserInformation => res.status(200).send(UserInformation));
+  .then(UserInformation => res.status(200).send(UserInformation));
 });
 //end!
 /* GET home page. */
