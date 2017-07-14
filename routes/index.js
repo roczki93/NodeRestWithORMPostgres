@@ -69,6 +69,22 @@ router.get('/api/v1/userinfo/:findParam', (req, res, next) => {
       .then(UserInformation => res.status(200).send(UserInformation));
 });
 //end get user info
+//add user info
+router.post('/api/v1/userinfo', (req, res, next) => {
+  const results = [];
+  // Grab data from http request
+  const data = {first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email, gender: req.body.gender, city: req.body.city, street: req.body.street, latitude: req.body.latitude, longitude: req.body.longitude};
+  return UserInformation.create(data).then(function(userInformation){
+    var response = {
+      error:"false",
+      message: "OK",
+      data: userInformation
+    };
+    
+    response.send(response);
+    next();
+  });
+//end!
 /* GET home page. */
 router.get('/', function(req, res, next) {
   UserInformation.findOne().then(function (userInfo) {
